@@ -12,3 +12,4 @@ D:\School Projects\IK-19fszPAEG 1 [prog_alap]\_seged\programozasi_tetelek\progra
 D:\School Projects\IK-19fszPAEG 1 [prog_alap]\_seged\programozasi_tetelek\programozasi_tetelek\obj\Debug\net6.0\programozasi_tetelek.pdb
 D:\School Projects\IK-19fszPAEG 1 [prog_alap]\_seged\programozasi_tetelek\programozasi_tetelek\obj\Debug\net6.0\programozasi_tetelek.genruntimeconfig.cache
 D:\School Projects\IK-19fszPAEG 1 [prog_alap]\_seged\programozasi_tetelek\programozasi_tetelek\obj\Debug\net6.0\ref\programozasi_tetelek.dll
+D:\School Projects\IK-19fszPAEG 1 [prog_alap]\_seged\programozasi_tetelek\programozasi_tetelek\obj\Debug\net6.0\programozasi_tetelek.sourcelink.json

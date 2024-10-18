@@ -64,7 +64,7 @@ namespace programozasi_tetelek
             Kereses(homersekletiAdatok, -1);
 
 
-            //Eldöntés
+            // Eldöntés
             Console.WriteLine("\nEldontes tetel");
             Console.Write("13 az primszam? ");
             if (Primszam(13))
@@ -77,7 +77,7 @@ namespace programozasi_tetelek
             else
                 Console.Write("Nem!\n");
 
-            //Eldöntés
+            // Mind eldöntés
             Console.WriteLine("\nMind eldontes tetel");
             int[] primek = { 3, 5, 7, 11, 13, 17, 19 };
             TombKiirasa(primek);
@@ -86,14 +86,38 @@ namespace programozasi_tetelek
             int[] nemMindPrimek = { 3, 5, 7, 11, 13, 17, 21 };
             TombKiirasa(nemMindPrimek);
             MindPrimszam(nemMindPrimek);
+
+
+            //Kiválasztás
+            Console.WriteLine("\nKiválasztás tétel");
+            Kivalaszt("VII");
+
         }
 
-        private static void MindPrimszam(int[] primek)
+        private static void Kivalaszt(string kartya)
+        {
+            string[] kartyak = new string[8] { "VII", "VIII", "IX", "X", "Also", "Felso", "Kiraly", "Asz" };
+            int[] ertekek = new int[8] { 7, 8, 9, 10, 2, 3, 4, 11 };
+
+            int i = 0;
+            while(i < kartyak.Length && kartyak[i] != kartya)
+                i++;
+            if(i != ertekek.Length)
+            {
+                Console.WriteLine($"A {kartyak[i]} értéke: {ertekek[i]} és indexe: {i+1}");
+            }
+            else
+            {
+                Console.WriteLine("Sajnos nem létezik ilyen kártya!");
+            }
+        }
+
+        private static void MindPrimszam(int[] szamok)
         {
             int i = 0;
-            while (i < primek.Length && Primszam(primek[i]))
+            while (i < szamok.Length && Primszam(szamok[i]))
                 i++;
-            if(i == primek.Length)
+            if(i == szamok.Length)
             {
                 Console.WriteLine("Valóban mind prímszám!");
             } else

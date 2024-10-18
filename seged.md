@@ -4,6 +4,8 @@ Segédanyag az ***IK-19fszPAEG** (2024/25/1)* [ELTE](https://www.inf.elte.hu/) t
 [Specifikáció Készítő](https://progalapfsz.elte.hu/specifikacio/)
 [C# leírás angol nyelven (tutorialspoint)](https://www.tutorialspoint.com/csharp/index.htm)
 
+*Forrás: órai anyag*
+
 `Megjegyzés: A specifikációban illetve a pszeudokódban az indexelés 1-től kezdödik (ez nem kötelező) a kódban a nyelvhez hűen 0-tól.`
 `- A specifikációban sok helyen lehetet volna elő feltételt adni, de algoritmus szempontjából ez lényegtelen. Feladat megoldás szempontjából viszont sokszor nagyon is lényeges.`
                                                                     
@@ -392,29 +394,47 @@ Ez az algoritmus gyakorlatilag a keresés illetve maximum kiválasztás kombiná
 
 #### Mind eldöntés
 
-**Példa:**
+**Példa:** Maradva az előző prímes példánál, döntsük el hogy egy tömb elemei mind prímszám-e vagy sem!
+`Megj.: Primek() függvény előző példánál van definiálva, most megnézük minden elemre teljesül-e.`
 
 >**Specifikáció**
 >```
-
+>Be: db∈N, szamok∈N[1..db]
+>Ki: mind∈L
+>Ef: -
+>Uf: mind = MIND(i=1..db,(VAN(j=2..szamok[i]-1,szamok[i] % j = 0) = hamis))
 >```
 
 >**Pszeudokód**
 >```
-
+>i:Egész
+>mind:Logikai
+>Be:szamok[db]
+>i=1
+>Ciklus amíg (i != db és Primszam(szamok[i] = igaz))
+>   i = i + 1
+>Ciklus vége
+>Ha (i == db) akkor
+>   mind = igaz
+>Különben
+>   mind = hamis
+>Elágazás vége
+>Ki: mind
 >```
 
 >**Visszavezetés**
 >```
-
+>van            ~   mind
+>1..elemszám    ~   1..db
+>T(elemek[i])   ~   Primszam(szamok[i])
 >```
 
 >**C# algoritmus**
 >```csharp
 >int i = 0;
->while (i < primek.Length && Primszam(primek[i]))
+>while (i < szamok.Length && Primszam(szamok[i]))
 >    i++;
->if(i == primek.Length)
+>if(i == szamok.Length)
 >{
 >    Console.WriteLine("Valóban mind prímszám!");
 >} else
@@ -426,26 +446,52 @@ Ez az algoritmus gyakorlatilag a keresés illetve maximum kiválasztás kombiná
 
 ### Kiválasztás
 
-**Példa:**
+Kiválasztásnál **tudjuk**, hogy létezik az elem, csak éppen azt nem, hogy hol. Előfeltételben viszont fontos erről meggyőzödni, hogy valóban létezik-e az adott elem vagy annak az index-e. Ilyen egyébként a legtöbbnyelvben rendelkezésre álló IndexOf() függvény is.
+
+**Példa:** Magyarkártyáknál kíváncsiak vagyunk egy adott kártya értékére.
 
 >**Specifikáció**
 >```
-
+>Be: kártya∈S, kártyák∈S[1..8]=["VII", "VIII","IX","X","Alsó","Felső","Király","Ász"], értékek∈N[1..8]=[7,8,9,10,2,3,4,11]
+>Ki: érték∈N, ind∈N
+>Ef: létezik i eleme [1..8]: (kártya = kártyák[i])
+>Uf: ind=KIVÁLASZT(i>=1,kártya=kártyák[i] és érték=értékek[ind])
 >```
 
 >**Pszeudokód**
 >```
-
+>Kártyák[8]: szöveg
+>i: egész
+>Be: kártya
+>i:= 1
+>Ciklus amíg (Kártyák[i] != kártya)
+>     i := i + 1
+>Ciklus vége
+>Ki: i, Kártyák[i]
 >```
 
 >**Visszavezetés**
 >```
-
+>ind              ~   i
+>T(elemek[ind])   ~   kártya=kártyák[i] és érték=értékek[ind] 
 >```
 
 >**C# algoritmus**
 >```csharp
-
+>string[] kartyak = new string[8] { "VII", "VIII", "IX", "X", "Also", "Felso", "Kiraly", "Asz" };
+>int[] ertekek = new int[8] { 7, 8, 9, 10, 2, 3, 4, 11 };
+>
+>int i = 0;
+>while(i < kartyak.Length && kartyak[i] != kartya)
+>    i++;
+>if(i != ertekek.Length)
+>{
+>    Console.WriteLine($"A {kartyak[i]} értéke: {ertekek[i]} és indexe: {i+1}");
+>}
+>else
+>{
+>    Console.WriteLine("Sajnos nem létezik ilyen kártya!");
+>}
 >```
 ---
 
