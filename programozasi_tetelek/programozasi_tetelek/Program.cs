@@ -1,12 +1,4 @@
-﻿
-
-
-
-
-
-
-
-/** Alapvető programozási tételek
+﻿/** Alapvető programozási tételek
  * CTRL + LMB -el oda ugrik a függvényhez (Visual Studio 2022-ben)
  *
  */
@@ -77,21 +69,61 @@ namespace programozasi_tetelek
             else
                 Console.Write("Nem!\n");
 
+
             // Mind eldöntés
             Console.WriteLine("\nMind eldontes tetel");
             int[] primek = { 3, 5, 7, 11, 13, 17, 19 };
             TombKiirasa(primek);
             MindPrimszam(primek);
-
             int[] nemMindPrimek = { 3, 5, 7, 11, 13, 17, 21 };
             TombKiirasa(nemMindPrimek);
             MindPrimszam(nemMindPrimek);
 
 
-            //Kiválasztás
+            // Kiválasztás
             Console.WriteLine("\nKiválasztás tétel");
             Kivalaszt("VII");
 
+            // Másolás
+            Console.WriteLine("Masolas tétel");
+            Console.WriteLine("Eredeti adatok:");
+            TombKiirasa(homersekletiAdatok);
+            Console.WriteLine("Masolt adatok (konvertalt)");
+            double[] fahrenheit = Masolas(homersekletiAdatok);
+            TombKiirasa(fahrenheit);
+
+            // Kiválogatás
+            Console.WriteLine("\nKivalogatas tetel");
+            Console.WriteLine("Korabbi konvertalt elemek: ");
+            TombKiirasa(fahrenheit);
+            Console.WriteLine("A 30-nál nagyobb elemeket válógatjuk ki:");
+            double[] nagyobb30F = Kivalogatas(fahrenheit, 30);
+            TombKiirasa(nagyobb30F);
+        }
+        
+        private static double[] Kivalogatas(double[] fahrenheit, int szam)
+        {
+            double[] nagyobbX = new double[fahrenheit.Length];
+            int db = 0;
+            for (int i = 0; i < fahrenheit.Length; i++) 
+            {
+                if (fahrenheit[i] > szam)
+                {
+                    nagyobbX[db] = fahrenheit[i];
+                    db++;
+                }
+            }
+            return nagyobbX;
+        }
+
+        private static double[] Masolas(int[] homerseklet)
+        {
+            double[] fahrenheitAdatok = new double[homerseklet.Length];
+            for(int i = 0; i < homerseklet.Length; i++)
+            {
+                fahrenheitAdatok[i] = (double)homerseklet[i] * 9/5 + 32;
+            }
+            return fahrenheitAdatok;
         }
 
         private static void Kivalaszt(string kartya)
@@ -246,6 +278,11 @@ namespace programozasi_tetelek
                 Console.Write($"{t} ");
             }
             Console.Write("\n");
+        }
+
+        static void ValtsSzint()
+        {
+
         }
     }
 }

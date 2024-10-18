@@ -501,48 +501,97 @@ Kiválasztásnál **tudjuk**, hogy létezik az elem, csak éppen azt nem, hogy h
 
 >**Specifikáció**
 >```
-
+>Be: db∈N,homC∈R[1..db]
+>Ki: homF∈R[1..db]
+>Fv: valt:R->R,
+>    valt(celsius)=(celsius * 9/5 + 32)
+>Ef: -
+>Uf: homF=MÁSOL(i=1..db, valt(homC[i]))
 >```
 
 >**Pszeudokód**
 >```
-
+>i: egész
+>Be: homC[db]
+>homF[db]: Valós
+>Ciklus i=1-től db-ig
+>   homF[i]=(homC[i] * 9/5 + 32)
+>Ciklus vége
+>Ki: homF
 >```
 
 >**Visszavezetés**
 >```
-
+>fvelemek       ~   homF
+>1..elemszám    ~   homC[1..db]
+>f(elemek[i])   ~   valt(homC[i])
 >```
 
 >**C# algoritmus**
 >```csharp
-
+>double[] fahrenheitAdatok = new double[homerseklet.Length];
+>for(int i = 0; i < homerseklet.Length; i++)
+>{
+>    fahrenheitAdatok[i] = (double)homerseklet[i] * 9/5 + 32;
+>}
+>return fahrenheitAdatok;
 >```
+
+`Megj.: Az egyszerűség kedvéért a korábban deklarált, egész számos hőmérsékleti adatokat konvertáljuk át. Lehetett volna valós a bemenet is feladat megoldáskor mindenképpen követni kell majd a specifikációt. (Tehát ha ott valós akkor legyen a kódban is az.)`
+
 ---
 
 ### Kiválogatás
 
-**Példa:**
+**Példa:** Maradva az előző példánál, válogassuk most ki az X-nél nagyobb elemeket egy másik tömbbe!
 
 >**Specifikáció**
 >```
-
+>Be: szam∈N,elemszam∈N,homF∈R[1..elemszam]
+>Ki: db∈N,nagyobbXF∈R[1..db]
+>Ef: -
+>Uf: (db,nagyobbX)=KIVÁLOGAT(i=1..elemszam, homF[i] > szam,homF[i])
 >```
 
 >**Pszeudokód**
 >```
-
+>Be: homF[elemszam]: Valós
+>nagyobbX[elemszam]: Valós
+>i: egész
+>db: Egész
+>db = 1
+>Ciklus i=1-től elemszam-ig
+>   Ha (homF[i] > szam) akkor
+>        nagyobbX[db] = homF[i]
+>        db = db + 1
+>    Elágazás vélge
+>Ciklus vége
+>Ki: nagyobbX
 >```
 
 >**Visszavezetés**
 >```
-
+>kivindexek     ~ nagyobb30F
+>1..elemszám    ~ 1..elemszam
+>T(elemek[i])   ~ homF[i] > szam
+>i              ~ i
 >```
 
 >**C# algoritmus**
 >```csharp
-
+>double[] nagyobbX = new double[fahrenheit.Length];
+>int db = 0;
+>for (int i = 0; i < fahrenheit.Length; i++) 
+>{
+>    if (fahrenheit[i] > szam)
+>    {
+>        nagyobbX[db] = fahrenheit[i];
+>        db++;
+>    }
+>}
+>return nagyobbX;
 >```
+
 ---
 
 Egyelőre ennyi!

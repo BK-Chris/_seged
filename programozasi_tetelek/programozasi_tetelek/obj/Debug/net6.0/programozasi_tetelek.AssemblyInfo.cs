@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("programozasi_tetelek")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ad70b6c286002f2a8791c557a6383dbf4a53c78a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+725b47349a0d6277dcbdf97d1634c6e04fdaadb5")]
 [assembly: System.Reflection.AssemblyProductAttribute("programozasi_tetelek")]
 [assembly: System.Reflection.AssemblyTitleAttribute("programozasi_tetelek")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
