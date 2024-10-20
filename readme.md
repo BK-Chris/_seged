@@ -1,8 +1,9 @@
 # Programozási tételek
 
 Segédanyag az ***IK-19fszPAEG** (2024/25/1)* [ELTE](https://www.inf.elte.hu/) tantárgyához.
-[Specifikáció Készítő](https://progalapfsz.elte.hu/specifikacio/)
-[C# leírás angol nyelven (tutorialspoint)](https://www.tutorialspoint.com/csharp/index.htm)
+
+- [Specifikáció Készítő](https://progalapfsz.elte.hu/specifikacio/)
+- [C# leírás angol nyelven (tutorialspoint)](https://www.tutorialspoint.com/csharp/index.htm)
 
 *Forrás: órai anyag*
 
@@ -571,7 +572,7 @@ Kiválasztásnál **tudjuk**, hogy létezik az elem, csak éppen azt nem, hogy h
 
 >**Visszavezetés**
 >```
->kivindexek     ~ nagyobb30F
+>kivindexek     ~ nagyobbX
 >1..elemszám    ~ 1..elemszam
 >T(elemek[i])   ~ homF[i] > szam
 >i              ~ i
@@ -592,6 +593,4 @@ Kiválasztásnál **tudjuk**, hogy létezik az elem, csak éppen azt nem, hogy h
 >return nagyobbX;
 >```
 
----
-
-Egyelőre ennyi!
+#### **[FEL](#programozási-tételek)**
