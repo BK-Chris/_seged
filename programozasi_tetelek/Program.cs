@@ -12,7 +12,7 @@ namespace programozasi_tetelek
             Console.WriteLine("Osszegzes tetel");
             int[] osztalyok = { 25, 20, 15 };
             TombKiirasa(osztalyok);
-            Console.WriteLine($"Osztalyok letszama: {Osszegzes(osztalyok)}\n");
+            Console.WriteLine($"Osztalyok letszama: {Osszegzes(ref osztalyok)}\n");
 
 
             // Megszámolás
@@ -260,7 +260,7 @@ namespace programozasi_tetelek
             return darab;
         }
 
-        static int Osszegzes(int[] elemek)
+        static int Osszegzes(ref int[] elemek)
         {
             int ossz = 0;
             for (int i = 0; i < elemek.Length; i++)
