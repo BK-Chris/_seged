@@ -11,6 +11,7 @@ A specifikációban, pszeudokódban az indexelés 1-től kezdődik, C# kódban 0
                                                             
 >## Tartalom
 >
+>- [Specifikáció kisokos](#specifikáció-kisokos)
 >- [Alapvető proramozási tételek](#alapvető-programozási-tételek)
 >    - [Összegzés](#összegzés)
 >    - [Megszámolás](#megszámolás)
@@ -23,6 +24,64 @@ A specifikációban, pszeudokódban az indexelés 1-től kezdődik, C# kódban 0
 >    - [Kiválasztás](#kiválasztás)
 >    - [Másolás](#másolás)
 >    - [Kiválogatás](#kiválogatás)
+
+## Specifikáció kisokos
+
+#### Jelzések
+| Jelek | Jelentése |
+| :---: | :--- |
+| ∈ | eleme |
+| ∀ | minden |
+| ∃ | létezik |
+| L | logikai |
+| R | valós |
+| N | természetes |
+| Z | Egész |
+| S | Szöveg |
+
+- **Tömb:** elemek∈N[1..10], elemek∈STRUKTÚRA[0..9]
+- **Struktúra:** STRUKTÚRA=(ELSOELEM:S x MASODIKELEM:N)
+- **T(elem)**: Valamilyen tulajdonságú elem. Ez lehet egy függvény valamilyen visszatérési értékkel vagy egy logikai állítás is például *elemek[i] > 0.*
+- **f(elem)**: Valamilyen függvény valamilyen visszatérési értékkel.
+
+#### Gyakori beépített függvények
+```
+osszegzes = SZUM(i=1..elemszám,elemek[i])
+darab = DARAB(i=1..elemszám,T(elemek[i]))
+(maxIndex,maxÉrték) = MAX(i=1..elemszám, T(elemek[i])) 
+(minIndex,minÉrték) = MAX(i=1..elemszám, T(elemek[i]))
+(van,maxIndex,maxÉrték) = MAXHA(i=1..elemszám,elemek[i],T(elemek[i]))
+(van,minxIndex,minÉrték) = MINHA(i=1..elemszám,elemek[i],T(elemek[i]))
+(van,index) = KERES(i=1..elemszám,T(elemek[i]))
+van = VAN(i=1..elemszám,T(elemek[i]))
+mind = MIND(i=1..elemszám,T(elemek[i]))
+index = KIVÁLASZT(i>=1,T(elemek[i]))
+tömb = MÁSOL(i=1..elemszám, f(elemek[i]))
+(újElemszám,újTömb) = KIVÁLOGAT(i=1..elemszám, T(elemek[i]))
+```
+
+**Megjegyzés:** Ahol több visszatérési érték van, lehet így is használni: **(,minÉrték)=MAX(i=1..elemszám, T(elemek[i]))** ha például csak az értékre vagyunk kíváncsiak.
+
+#### Saját függvény
+```
+Fv: függvénynév:TÍPUS->TÍPUS,           // Deklaráció egy bemenő paraméterrel
+    függvénynév(PARAMÉTER1)=(/* Függvény leírása */)
+
+Fv: függvénynév:TÍPUS x TÍPUS->TÍPUS,   // Deklaráció több paraméterrel
+    függvénynév(PARAMÉTER1,PARAMÉTER2)=(/* Függvény leírása */)
+```
+#### Specifikáció struktúra
+**Ezek sorrendje nem felcserélhető!**
+```
+Be: // Bemenet
+Sa: // Segédváltozó
+Ki: // Kimenet
+Fv: // Függvény
+Fv: // További függvény
+Ef: // Előfeltétel
+Uf: // Utófeltétel
+```
+----
 
 ## Alapvető programozási tételek
 
