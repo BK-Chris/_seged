@@ -7,8 +7,8 @@ Segédanyag az ***IK-19fszPAEG** (2024/25/1)* [ELTE](https://www.inf.elte.hu/) t
 
 *Forrás: órai anyag*
 
-A specifikációban, pszeudokódban az indexelés 1-től kezdödik, C# kódban 0-tól!
-                                                                    
+A specifikációban, pszeudokódban az indexelés 1-től kezdődik, C# kódban 0-tól!
+                                                            
 >## Tartalom
 >
 >- [Alapvető proramozási tételek](#alapvető-programozási-tételek)
@@ -23,8 +23,6 @@ A specifikációban, pszeudokódban az indexelés 1-től kezdödik, C# kódban 0
 >    - [Kiválasztás](#kiválasztás)
 >    - [Másolás](#másolás)
 >    - [Kiválogatás](#kiválogatás)
-
----
 
 ## Alapvető programozási tételek
 
@@ -110,7 +108,7 @@ return darab;
 ---
 ## Maximum kiválasztás
 Gyakran kell a maximum illetve minimum érték programozás során, ezekkel az algoritmusokkal tudjuk megtalálni őket. A maximum és minimum kiválasztás között csak a logikai feltétel a különbség. Néha az index-re (a tömbnek a hányadik elemére), néha pedig az értékére vagy mindkettőre, algoritmuson nem változtat csak a kimeneten.
-*Példa:** Mennyi a legalacsonyabb illetve legmagasabb ember magassága?
+**Példa:** Mennyi a legalacsonyabb illetve legmagasabb ember magassága?
 **Specifikáció** [LINK](https://tinyurl.com/3asmfjnb)
 ```
 Be: db∈N, emberek∈EMBER[1..db], EMBER=(nev:S x magassag:N)
@@ -142,7 +140,7 @@ for (int i = 1; i < emberek.Length; i++)
 {
     if (emberek[i].magassag > maxErtek)
     {
-        maxErtek = elemek[i];
+        maxErtek = emberek[i].magassag;
     }
 }
 return maxErtek;
@@ -179,7 +177,7 @@ for (int i = 1; i < emberek.Length; i++)
 {
     if (emberek[i].magassag < minErtek)
     {
-        minErtek = elemek[i];
+        minErtek = emberek[i].magassag;
     }
 }
 return minErtek;
@@ -187,7 +185,7 @@ return minErtek;
 ---
 ## Feltételes maximum keresés
 Ez az algoritmus gyakorlatilag a keresés illetve maximum kiválasztás kombinációja.
-*Példa:** Például adjuk meg a legmelegebb fagyos napot.
+**Példa:** Adjuk meg a legmelegebb fagyos napot.
 **Specifikáció** [LINK](https://tinyurl.com/2knb52vp)
 ```
 Be: db∈N, homersekletek∈R[1..db]
@@ -225,8 +223,9 @@ Ki: (van, maxind, maxert)
 ```csharp
 bool van = false;
 int maxind = -1;
-int maxert = -1;
-for (int i = 0; i < homersekletek.Length; i++) {
+double maxert = -1;
+for (int i = 0; i < homersekletek.Length; i++)
+{
     if (homersekletek[i] < 0)
     {
         if (van)
@@ -258,6 +257,12 @@ Ki: van∈L, index∈Z
 Ef: db > 0 és ∀ i∈[1..db]:(-89 <= homersekletek[i] <= 58)
 Uf: (van,index) = KERES(i=1..db,homersekletek[i] = 20)
 ```
+**Visszavezetés**
+```
+ind            ~   index
+1..elemszám    ~   1..db
+T(elemek[i])   ~   homersekletek[i] = 20
+```
 **Pszeudokód**
 ```
 i:Egész
@@ -267,17 +272,11 @@ index=-1
 Ciklus amíg i <= db és homersekletek[i] != 20
    i = i + 1
 Ciklus vége
-Ha i <= db akkor
+Ha i < db akkor
     index:= i
     van:= igaz
 Elágazás vége
 Ki: (van, index)
-```
-**Visszavezetés**
-```
-ind            ~   index
-1..elemszám    ~   1..db
-T(elemek[i])   ~   homersekletek[i] = 20
 ```
 **C# algoritmus**
 ```csharp
@@ -286,16 +285,17 @@ bool van = false;
 int index = -1;
 while ((i < homersekletek.Length) && homersekletek[i] != 20)
     i++;
-if (i == homersekletek.length){
+if (i != homersekletek.Length)
+{
     van = true;
     index = i;
 }
-return (van,index)
+return (van, index);
 ```
 ---
 ## Eldöntés
-*Példa:** Egy természetes számról döntsük el, hogy prímszám-e!
-**Specifikáció** [LINK](https://tinyurl.com/4e6dffak)
+**Példa:** Döntsük el hogy 7417 prímszám-e!
+**Specifikáció** [LINK](https://tinyurl.com/3rpzz49s)
 ```
 Be: szam∈Z
 Ki: primszam∈L
@@ -334,7 +334,7 @@ return (i > szamGyoke);
 ```
 ---
 ### Mind eldöntés
-*Példa:** Maradva az előző prímes példánál, döntsük el hogy egy tömb elemei mind prímszám-e vagy sem!
+**Példa:** Maradva az előző prímes példánál, döntsük el hogy egy tömb elemei mind prímszám-e vagy sem!
 **Specifikáció** [LINK](https://tinyurl.com/mrmkxff)
 ```
 Be: db∈N, szamok∈N[1..db]
@@ -346,14 +346,14 @@ Uf: mind = MIND(i=1..db,(VAN(j=2..szamok[i]-1,szamok[i] % j = 0) = hamis))
 ```
 van            ~   mind
 1..elemszám    ~   1..db
-T(elemek[i])   ~   Primszam(szamok[i])
+T(elemek[i])   ~   PrimszamE(szamok[i])
 ```
 **Pszeudokód**
 ```
 i:Egész
 mind: hamis
 i=1
-Ciklus amíg (i != db és primszam(szamok[i] = igaz))
+Ciklus amíg (i != db és PrimszamE(szamok[i] = igaz))
    i = i + 1
 Ciklus vége
 Ha (i == db) akkor
@@ -361,7 +361,7 @@ Ha (i == db) akkor
 Elágazás vége
 Ki: mind
 
-Függvény primszam(szam: Egész):Logikai
+Függvény PrimszamE(szam: Egész):Logikai
     j:Egész
     prim: hamis
     j=2
@@ -371,16 +371,16 @@ Függvény primszam(szam: Egész):Logikai
     Ha (j > szam-1) akkor
         primszam = igaz
     Elágazás vége
-    primszam:= prim
+    PrimszamE:= prim
 Függvény vége
 ```
 **C# algoritmus**
 ```csharp
 int i = 0;
 bool mind = false;
-while (i < szamok.Length && Primszam(szamok[i]))
+while (i < szamok.Length && PrimszamE(szamok[i]))
     i++;
-if(i == szamok.Length)
+if (i == szamok.Length)
 {
     mind = true;
 }
@@ -405,25 +405,32 @@ T(elemek[ind])   ~   kártya=kártyák[i] és érték=értékek[ind]
 **Pszeudokód**
 ```
 i: egész
-Be: kártya
 i:= 1
 Ciklus amíg (Kártyák[i] != kártya)
      i := i + 1
 Ciklus vége
-Ki: i, Kártyák[i]
+Ha i > kártyák.hossz akkor
+    Ki: -1, -1
+különben
+    Ki: i, Kártyák[i]
+Elágazás vége
 ```
 **C# algoritmus**
 ```csharp
 int i = 0;
-while(i < kartyak.length && kartyak[i] != kartya)
+while (i < kartyak.Length && kartyak[i] != kartya)
     i++;
-return (i, ertekek[i]);
+
+if (i == kartyak.Length)
+    return (-1, -1);
+else
+    return (i, ertekek[i]);
 ```
 `Megj.: Fontos meggyőződni arról, hogy létezik-e a kért elem, különben IndexOutOfRangeException-t dob a programunk!`
 
 ---
 ## Másolás
-**Példa:** Szeretnénk a hőmérsékleti adatainkat át konvertálni C° -ból F°-be és szeretnénk tárolni is.
+**Példa:** Szeretnénk a hőmérsékleti adatainkat át konvertálni C° -ból F°-be.
 **Specifikáció** [LINK](https://tinyurl.com/5n8u8jwt)
 ```
 Be: db∈N,homC∈R[1..db]
@@ -500,6 +507,6 @@ for (int i = 0; i < homC.Length; i++)
         db++;
     }
 }
-return (db,nagyobb20);
+return nagyobb20;
 ```
 #### **[FEL](#programozási-tételek)**
