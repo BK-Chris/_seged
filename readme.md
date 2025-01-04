@@ -1,5 +1,7 @@
 # Programozási tételek
 
+**Általános implementáció:** https://github.com/BK-Chris/ProgalapSeged
+
 Segédanyag az ***IK-19fszPAEG** (2024/25/1)* [ELTE](https://www.inf.elte.hu/) tantárgyához.
 
 - [Specifikáció Készítő](https://progalapfsz.elte.hu/specifikacio/)
